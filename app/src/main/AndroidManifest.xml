@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+
+    <!-- Package visibility queries for Android 11+ (API 30+) -->
+    <queries>
+        <!-- WhatsApp -->
+        <package android:name="com.whatsapp" />
+        
+        <!-- YouTube -->
+        <package android:name="com.google.android.youtube" />
+        
+        <!-- Google Chat -->
+        <package android:name="com.google.android.apps.dynamite" />
+        
+        <!-- Gmail -->
+        <package android:name="com.google.android.gm" />
+        
+        <!-- Chrome -->
+        <package android:name="com.android.chrome" />
+        
+        <!-- Google Maps -->
+        <package android:name="com.google.android.apps.maps" />
+        
+        <!-- Instagram -->
+        <package android:name="com.instagram.android" />
+        
+        <!-- Facebook -->
+        <package android:name="com.facebook.katana" />
+        
+        <!-- Twitter -->
+        <package android:name="com.twitter.android" />
+        
+        <!-- Telegram -->
+        <package android:name="org.telegram.messenger" />
+        
+        <!-- Spotify -->
+        <package android:name="com.spotify.music" />
+        
+        <!-- Netflix -->
+        <package android:name="com.netflix.mediaclient" />
+    </queries>
+
+
+    <application
+        android:name=".AgentApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Agent">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Agent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".accessibility.ScreenInteractionService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+    </application>
+
+</manifest>
